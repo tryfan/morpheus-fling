@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-type RabbitResults struct{
+type RabbitResults struct {
 	Name      string `json:name`
 	VHost     string `json:vhost`
 	Messages  int    `json:messages`
@@ -23,7 +23,8 @@ func RabbitStats(user string, password string) []RabbitResults {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", manager, nil)
 	if err != nil {
-		log.Fatalf("Error getting response: %s", err)
+		log.Printf("Error getting response: %s", err)
+		return nil
 	}
 
 	req.SetBasicAuth(user, password)
